@@ -663,6 +663,29 @@ a {
   text-transform: uppercase;
 }
 
+.menu-results {
+  position: relative;
+  isolation: isolate;
+}
+
+.menu-results::before {
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  background-image: url("/menu-village.png");
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: clamp(900px, 120vw, 1983px) auto;
+  opacity: 0.16;
+}
+
+.menu-results > * {
+  position: relative;
+  z-index: 1;
+}
+
 .menu-category {
   display: grid;
   grid-template-columns: minmax(210px, 0.34fr) 1fr;
@@ -705,7 +728,7 @@ a {
   gap: 18px;
   padding: 20px;
   border: 1.5px solid var(--line);
-  background: rgba(255, 249, 232, 0.72);
+  background: rgba(255, 249, 232, 0.88);
   transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 

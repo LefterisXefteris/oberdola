@@ -663,35 +663,68 @@ a {
   text-transform: uppercase;
 }
 
-.menu-results {
-  position: relative;
-  isolation: isolate;
-}
-
-.menu-results::before {
-  position: absolute;
-  inset: 0 calc(50% - 50vw);
-  z-index: 0;
-  content: "";
-  pointer-events: none;
-  background-image: url("/menu-village.png");
-  background-repeat: repeat-y;
-  background-position: center top;
-  background-size: clamp(900px, 120vw, 1983px) auto;
-  opacity: 0.16;
-}
-
-.menu-results > * {
-  position: relative;
-  z-index: 1;
-}
-
 .menu-category {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(210px, 0.34fr) 1fr;
   gap: clamp(24px, 4vw, 70px);
+  isolation: isolate;
   padding: 58px 0;
   border-top: 2px solid var(--ink);
+}
+
+.menu-category::before,
+.menu-category::after {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.menu-category::before {
+  inset: 0 calc(50% - 50vw);
+  background-image: url("/menu-village.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: clamp(780px, 92vw, 1500px) auto;
+  opacity: 0.13;
+}
+
+.menu-category:nth-of-type(3n + 2)::before {
+  background-position: right clamp(-170px, -11vw, -96px);
+  background-size: clamp(680px, 78vw, 1260px) auto;
+  opacity: 0.1;
+  transform: scaleX(-1);
+}
+
+.menu-category:nth-of-type(3n)::before {
+  background-position: 72% 58%;
+  background-size: clamp(620px, 68vw, 1080px) auto;
+  opacity: 0.115;
+}
+
+.menu-category:nth-of-type(4n + 1)::after {
+  top: 16%;
+  left: 23%;
+  width: clamp(170px, 19vw, 320px);
+  height: clamp(90px, 10vw, 170px);
+  background: rgba(255, 210, 31, 0.16);
+  clip-path: polygon(2% 18%, 96% 0, 100% 76%, 5% 100%);
+  transform: rotate(-7deg);
+}
+
+.menu-category:nth-of-type(4n + 3)::after {
+  right: 3%;
+  bottom: 8%;
+  width: clamp(170px, 20vw, 340px);
+  aspect-ratio: 1;
+  border: clamp(24px, 3vw, 52px) solid rgba(239, 31, 47, 0.055);
+  border-radius: 50%;
+}
+
+.menu-category > * {
+  position: relative;
+  z-index: 1;
 }
 
 .menu-category-heading {

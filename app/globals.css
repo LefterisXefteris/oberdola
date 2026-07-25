@@ -682,43 +682,61 @@ a {
 }
 
 .menu-category::before {
-  inset: 0 calc(50% - 50vw);
+  right: auto;
+  bottom: 28px;
+  left: calc(50% - 50vw);
+  width: min(42vw, 560px);
+  height: clamp(170px, 22vw, 310px);
   background-image: url("/menu-village.png");
   background-repeat: no-repeat;
   background-position: left bottom;
-  background-size: clamp(780px, 92vw, 1500px) auto;
-  opacity: 0.13;
+  background-size: auto 100%;
+  opacity: 0.14;
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 58%, transparent 100%);
+  mask-image: linear-gradient(to right, black 0%, black 58%, transparent 100%);
 }
 
 .menu-category:nth-of-type(3n + 2)::before {
-  background-position: right clamp(-170px, -11vw, -96px);
-  background-size: clamp(680px, 78vw, 1260px) auto;
-  opacity: 0.1;
+  top: 38px;
+  right: calc(50% - 50vw);
+  bottom: auto;
+  left: auto;
+  width: min(34vw, 460px);
+  height: clamp(160px, 19vw, 270px);
+  background-position: right bottom;
+  background-size: auto 100%;
+  opacity: 0.085;
   transform: scaleX(-1);
 }
 
 .menu-category:nth-of-type(3n)::before {
-  background-position: 72% 58%;
-  background-size: clamp(620px, 68vw, 1080px) auto;
-  opacity: 0.115;
+  top: 32%;
+  right: auto;
+  bottom: auto;
+  left: calc(50% - 50vw);
+  width: min(30vw, 400px);
+  height: clamp(150px, 18vw, 250px);
+  background-position: 38% bottom;
+  background-size: auto 100%;
+  opacity: 0.1;
 }
 
 .menu-category:nth-of-type(4n + 1)::after {
   top: 16%;
-  left: 23%;
-  width: clamp(170px, 19vw, 320px);
-  height: clamp(90px, 10vw, 170px);
-  background: rgba(255, 210, 31, 0.16);
+  left: -2%;
+  width: clamp(140px, 15vw, 240px);
+  height: clamp(76px, 8vw, 125px);
+  background: rgba(255, 210, 31, 0.12);
   clip-path: polygon(2% 18%, 96% 0, 100% 76%, 5% 100%);
   transform: rotate(-7deg);
 }
 
 .menu-category:nth-of-type(4n + 3)::after {
-  right: 3%;
+  right: -5%;
   bottom: 8%;
-  width: clamp(170px, 20vw, 340px);
+  width: clamp(150px, 16vw, 250px);
   aspect-ratio: 1;
-  border: clamp(24px, 3vw, 52px) solid rgba(239, 31, 47, 0.055);
+  border: clamp(22px, 2.5vw, 38px) solid rgba(239, 31, 47, 0.045);
   border-radius: 50%;
 }
 
@@ -761,7 +779,7 @@ a {
   gap: 18px;
   padding: 20px;
   border: 1.5px solid var(--line);
-  background: rgba(255, 249, 232, 0.88);
+  background: rgba(255, 249, 232, 0.94);
   transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 

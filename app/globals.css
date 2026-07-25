@@ -179,10 +179,10 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(480px, 1.12fr);
+  grid-template-columns: minmax(0, 0.72fr) minmax(520px, 1.28fr);
   gap: clamp(24px, 4vw, 72px);
   align-items: center;
-  width: min(1600px, calc(100% - 48px));
+  width: min(1760px, calc(100% - 32px));
   min-height: min(830px, calc(100svh - 82px));
   margin-inline: auto;
   padding: 64px 0 74px;
@@ -240,7 +240,7 @@ a {
 
 .hero h1 {
   max-width: 780px;
-  font-size: clamp(4.5rem, 8.4vw, 9.5rem);
+  font-size: clamp(4rem, 6.6vw, 8rem);
 }
 
 .hero h1 span,
@@ -354,14 +354,14 @@ a {
 
 .deal-sticker {
   position: absolute;
-  right: 16px;
-  bottom: 26px;
+  right: 10px;
+  bottom: -72px;
   display: flex;
   flex-direction: column;
-  width: 210px;
-  min-height: 210px;
+  width: 184px;
+  min-height: 184px;
   justify-content: center;
-  padding: 22px;
+  padding: 18px;
   border: 3px solid var(--ink);
   border-radius: 50%;
   background: var(--yellow);
@@ -1092,11 +1092,11 @@ footer {
   }
 
   .hero {
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 0.76fr 1.24fr;
   }
 
   .hero h1 {
-    font-size: clamp(4rem, 8.2vw, 7.2rem);
+    font-size: clamp(3.8rem, 6.8vw, 6.2rem);
   }
 
   .quick-facts {
@@ -1175,7 +1175,8 @@ footer {
   }
 
   .deal-sticker {
-    right: -8px;
+    right: 4px;
+    bottom: -48px;
     width: 150px;
     min-height: 150px;
     padding: 14px;

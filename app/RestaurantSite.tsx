@@ -256,7 +256,7 @@ export function RestaurantSite() {
 
           <div className="menu-results">
             {visibleCategories.map((category) => (
-              <section className="menu-category" key={category.slug} data-reveal>
+              <section className="menu-category" key={category.slug}>
                 <div className="menu-category-heading">
                   <h3>{category.label}</h3>
                   {category.note && <p>{category.note}</p>}

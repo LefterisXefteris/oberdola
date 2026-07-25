@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { menuCategories, totalMenuItems } from "./menu-data";
 import { localFaqs } from "./site-config";
 
@@ -46,6 +46,8 @@ export function RestaurantSite() {
   const [query, setQuery] = useState("");
   const [vegetarianOnly, setVegetarianOnly] = useState(false);
   const [openingState, setOpeningState] = useState(() => getOpeningState());
+  const categoryTabsRef = useRef<HTMLDivElement>(null);
+  const menuResultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setOpeningState(getOpeningState()), 60_000);
@@ -115,6 +117,31 @@ export function RestaurantSite() {
     (count, category) => count + category.items.length,
     0,
   );
+
+  const moveToResults = () => {
+    window.requestAnimationFrame(() => {
+      menuResultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
+  const chooseCategory = (category: string) => {
+    setActiveCategory(category);
+    moveToResults();
+  };
+
+  const resetMenuFilters = () => {
+    setQuery("");
+    setActiveCategory("alle");
+    setVegetarianOnly(false);
+    moveToResults();
+  };
+
+  const scrollCategoryTabs = (direction: -1 | 1) => {
+    categoryTabsRef.current?.scrollBy({
+      left: direction * Math.min(460, window.innerWidth * 0.65),
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -293,31 +320,88 @@ export function RestaurantSite() {
             </button>
           </div>
 
-          <div className="category-tabs" role="group" aria-label="Menükategorien" data-reveal>
-            <button
-              type="button"
-              className={activeCategory === "alle" ? "active" : ""}
-              onClick={() => setActiveCategory("alle")}
-            >
-              Alle
-            </button>
-            {menuCategories.map((category) => (
+          <div className="menu-navigator" data-reveal>
+            <div className="menu-navigator-title">
+              <span>Kategorie wählen</span>
+              <small>Antippen und direkt losstöbern</small>
+            </div>
+
+            <label className="mobile-category-select">
+              <span className="sr-only">Menükategorie auswählen</span>
+              <select
+                value={activeCategory}
+                onChange={(event) => chooseCategory(event.target.value)}
+                aria-controls="menu-results"
+              >
+                <option value="alle">Alle Kategorien · {totalMenuItems}</option>
+                {menuCategories.map((category) => (
+                  <option key={category.slug} value={category.slug}>
+                    {category.label} · {category.items.length}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <div className="category-browser">
               <button
                 type="button"
-                key={category.slug}
-                className={activeCategory === category.slug ? "active" : ""}
-                onClick={() => setActiveCategory(category.slug)}
+                className="category-scroll-button"
+                onClick={() => scrollCategoryTabs(-1)}
+                aria-label="Vorherige Kategorien anzeigen"
               >
-                {category.label}
+                ←
               </button>
-            ))}
+              <div
+                className="category-tabs"
+                ref={categoryTabsRef}
+                role="group"
+                aria-label="Menükategorien"
+              >
+                <button
+                  type="button"
+                  className={activeCategory === "alle" ? "active" : ""}
+                  onClick={() => chooseCategory("alle")}
+                  aria-pressed={activeCategory === "alle"}
+                  aria-controls="menu-results"
+                >
+                  Alle <span>{totalMenuItems}</span>
+                </button>
+                {menuCategories.map((category) => (
+                  <button
+                    type="button"
+                    key={category.slug}
+                    className={activeCategory === category.slug ? "active" : ""}
+                    onClick={() => chooseCategory(category.slug)}
+                    aria-pressed={activeCategory === category.slug}
+                    aria-controls="menu-results"
+                  >
+                    {category.label} <span>{category.items.length}</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                className="category-scroll-button"
+                onClick={() => scrollCategoryTabs(1)}
+                aria-label="Weitere Kategorien anzeigen"
+              >
+                →
+              </button>
+            </div>
+
+            <div className="menu-navigator-meta">
+              <p className="result-count" aria-live="polite">
+                {visibleCount} {visibleCount === 1 ? "Gericht" : "Gerichte"}
+              </p>
+              {(activeCategory !== "alle" || query || vegetarianOnly) && (
+                <button type="button" className="reset-filters" onClick={resetMenuFilters}>
+                  Alles anzeigen
+                </button>
+              )}
+            </div>
           </div>
 
-          <p className="result-count" aria-live="polite">
-            {visibleCount} {visibleCount === 1 ? "Treffer" : "Treffer"}
-          </p>
-
-          <div className="menu-results">
+          <div className="menu-results" id="menu-results" ref={menuResultsRef}>
             {visibleCategories.map((category) => (
               <section className="menu-category" key={category.slug}>
                 <div className="menu-category-heading">
@@ -358,11 +442,7 @@ export function RestaurantSite() {
                 <p>Versuch einen anderen Suchbegriff oder zeig wieder alle Kategorien.</p>
                 <button
                   type="button"
-                  onClick={() => {
-                    setQuery("");
-                    setActiveCategory("alle");
-                    setVegetarianOnly(false);
-                  }}
+                  onClick={resetMenuFilters}
                 >
                   Filter zurücksetzen
                 </button>

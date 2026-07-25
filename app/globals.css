@@ -691,16 +691,74 @@ a {
   color: white;
 }
 
+.menu-navigator {
+  position: sticky;
+  top: 82px;
+  z-index: 35;
+  margin: 4px calc(50% - 50vw) 0;
+  padding: 13px max(24px, calc((100vw - 1440px) / 2));
+  border-block: 2px solid var(--ink);
+  background: rgba(255, 243, 207, 0.97);
+  box-shadow: 0 8px 20px rgba(25, 24, 20, 0.1);
+  backdrop-filter: blur(14px);
+}
+
+.menu-navigator-title {
+  display: none;
+}
+
+.category-browser {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.category-scroll-button {
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  cursor: pointer;
+  font-weight: 900;
+  transition: background 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.category-scroll-button:hover {
+  background: var(--yellow);
+  transform: scale(1.04);
+}
+
 .category-tabs {
   display: flex;
   gap: 8px;
-  padding: 14px 0 10px;
+  padding: 2px 1px 8px;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scrollbar-color: var(--red) rgba(25, 24, 20, 0.1);
   scrollbar-width: thin;
+}
+
+.category-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.category-tabs::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--red);
+}
+
+.category-tabs::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(25, 24, 20, 0.1);
 }
 
 .category-tabs button {
   flex: none;
+  scroll-snap-align: start;
   padding: 10px 15px;
   border: 1.5px solid var(--ink);
   border-radius: 999px;
@@ -713,19 +771,61 @@ a {
   transition: background 140ms ease, color 140ms ease;
 }
 
+.category-tabs button span {
+  display: inline-grid;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(25, 24, 20, 0.1);
+  font-size: 0.65rem;
+}
+
 .category-tabs button:hover,
 .category-tabs button.active {
   background: var(--ink);
   color: var(--cream);
 }
 
+.category-tabs button.active span {
+  background: var(--red);
+  color: white;
+}
+
+.mobile-category-select {
+  display: none;
+}
+
+.menu-navigator-meta {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 50px 0;
+}
+
 .result-count {
-  margin: 12px 0 34px;
+  margin: 0;
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.reset-filters {
+  padding: 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.menu-results {
+  scroll-margin-top: 202px;
 }
 
 .menu-category {
@@ -1467,6 +1567,72 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .menu-navigator {
+    top: 70px;
+    margin-top: 10px;
+    padding: 12px 14px 10px;
+  }
+
+  .menu-navigator-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .menu-navigator-title > span {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .menu-navigator-title small {
+    color: var(--muted);
+    font-size: 0.68rem;
+  }
+
+  .category-browser {
+    display: none;
+  }
+
+  .mobile-category-select {
+    position: relative;
+    display: block;
+  }
+
+  .mobile-category-select::after {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    content: "↓";
+    pointer-events: none;
+    font-weight: 900;
+    transform: translateY(-50%);
+  }
+
+  .mobile-category-select select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 44px 0 14px;
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    outline: 0;
+    appearance: none;
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 900;
+  }
+
+  .menu-navigator-meta {
+    padding: 8px 1px 0;
+  }
+
+  .menu-results {
+    scroll-margin-top: 218px;
+  }
+
   .menu-category {
     grid-template-columns: 1fr;
   }
@@ -1580,6 +1746,10 @@ footer {
   .menu-card {
     min-height: 132px;
     padding: 16px;
+  }
+
+  .menu-navigator-title small {
+    display: none;
   }
 
   .menu-name-line h4 {

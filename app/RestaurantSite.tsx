@@ -3,6 +3,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { menuCategories, totalMenuItems } from "./menu-data";
+import { localFaqs } from "./site-config";
 
 const phoneHref = "tel:+4915231302228";
 const whatsappHref =
@@ -124,6 +125,7 @@ export function RestaurantSite() {
         <nav aria-label="Hauptnavigation">
           <a href="#speisekarte">Speisekarte</a>
           <a href="#lieferservice">Lieferung</a>
+          <a href="#fragen">Fragen</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
         <a className="header-order" href={whatsappHref} target="_blank" rel="noreferrer">
@@ -144,8 +146,8 @@ export function RestaurantSite() {
               bewegt.
             </h1>
             <p className="hero-lead">
-              Heiß vom Grill, frisch belegt und auf Wunsch bis vor deine Tür.
-              Deine ganze Lieblingskarte – jetzt schneller zu finden.
+              Dein Imbiss für Döner, Pizza und Essen zum Mitnehmen in Oberdorla –
+              nahe Niederdorla und Mühlhausen, auf Wunsch bis vor deine Tür.
             </p>
             <div className="hero-actions">
               <a className="button button-dark" href={whatsappHref} target="_blank" rel="noreferrer">
@@ -212,6 +214,42 @@ export function RestaurantSite() {
             <p>Lieferzeiten täglich von <strong>11:30 – 21:00 Uhr</strong>.</p>
             <a href="#lieferservice">Liefergebiete ansehen <Arrow /></a>
           </article>
+        </section>
+
+        <section className="local-intro section-shell" aria-labelledby="local-heading">
+          <div className="local-intro-copy" data-reveal>
+            <p className="section-kicker">Imbiss in der Vogtei</p>
+            <h2 id="local-heading">
+              Döner & Pizza nahe <span>Mühlhausen.</span>
+            </h2>
+            <p>
+              Du suchst einen Imbiss, Döner, Pizza oder Take-away in deiner Nähe?
+              Der Vogteier Imbiss liegt in Oberdorla, direkt zwischen Niederdorla
+              und Mühlhausen. Bestelle zur Abholung oder nutze unseren Heimservice
+              in der Vogtei und den umliegenden Orten.
+            </p>
+            <div className="local-links">
+              <a href="#speisekarte">Speisekarte ansehen <Arrow /></a>
+              <a href="#lieferservice">Liefergebiete prüfen <Arrow /></a>
+            </div>
+          </div>
+          <div className="local-areas" data-reveal>
+            <p className="section-kicker">Hier sind wir für dich da</p>
+            <ul aria-label="Liefergebiete rund um Oberdorla">
+              {[
+                "Oberdorla",
+                "Niederdorla",
+                "Mühlhausen",
+                "Langula",
+                "Felchta",
+                "Kammerforst",
+                "Oppershausen",
+                "Heyerode",
+              ].map((area) => (
+                <li key={area}>{area}</li>
+              ))}
+            </ul>
+          </div>
         </section>
 
         <section id="speisekarte" className="menu-section section-shell">
@@ -397,12 +435,35 @@ export function RestaurantSite() {
             </a>
           </div>
         </section>
+
+        <section id="fragen" className="faq-section section-shell" aria-labelledby="faq-heading">
+          <div className="faq-heading" data-reveal>
+            <p className="section-kicker">Kurz beantwortet</p>
+            <h2 id="faq-heading">Häufige Fragen.</h2>
+            <p>
+              Alles Wichtige zu Standort, Lieferung, Abholung und Öffnungszeiten
+              beim Vogteier Imbiss.
+            </p>
+          </div>
+          <div className="faq-list">
+            {localFaqs.map((item, index) => (
+              <details key={item.question} data-reveal>
+                <summary>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  {item.question}
+                </summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer>
         <div className="footer-brand">Vogteier Imbiss</div>
         <div className="footer-meta">
           <p>© {new Date().getFullYear()} Bektas Saridas</p>
+          <p>Döner · Pizza · Abholung · Heimservice in der Vogtei</p>
           <div>
             <a href="/impressum">Impressum</a>
             <a href="/datenschutz">Datenschutz</a>

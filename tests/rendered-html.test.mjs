@@ -37,7 +37,26 @@ test("server-renders the restaurant landing page", async () => {
   assert.match(html, /Speisekarte/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /Vogteier Imbiss/);
+  assert.match(html, /Döner &amp; Pizza nahe/);
+  assert.match(html, /Niederdorla/);
+  assert.match(html, /FAQPage/);
+  assert.match(html, /areaServed/);
+  assert.match(html, /Essen zum Mitnehmen/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
+});
+
+test("publishes crawl and discovery routes", async () => {
+  const robotsResponse = await render("/robots.txt");
+  assert.equal(robotsResponse.status, 200);
+  const robots = await robotsResponse.text();
+  assert.match(robots, /User-Agent: \*/i);
+  assert.match(robots, /Sitemap: https:\/\/vogteier-imbiss-oberdorla/);
+
+  const sitemapResponse = await render("/sitemap.xml");
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
+  assert.match(sitemap, /vogteier-imbiss-oberdorla\.lefterisxefteris\.chatgpt\.site/);
+  assert.match(sitemap, /<urlset/);
 });
 
 test("renders legal pages with the supplied operator details", async () => {

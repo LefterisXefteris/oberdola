@@ -225,6 +225,10 @@ export function RestaurantSite() {
             </a>
           </div>
 
+          <div className="menu-village" aria-hidden="true" data-reveal>
+            <img src="/menu-village.png" alt="" loading="lazy" />
+          </div>
+
           <div className="menu-controls" data-reveal>
             <label className="search-box">
               <span aria-hidden="true">⌕</span>

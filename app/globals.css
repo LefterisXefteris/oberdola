@@ -538,6 +538,32 @@ a {
   font-weight: 900;
 }
 
+.menu-village {
+  position: relative;
+  aspect-ratio: 3.4 / 1;
+  min-height: 150px;
+  max-height: 390px;
+  margin: 48px calc(50% - 50vw) 16px;
+  overflow: hidden;
+  border-block: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.menu-village::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  box-shadow: inset 0 16px 26px rgba(255, 247, 222, 0.2);
+}
+
+.menu-village img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
 .menu-controls {
   display: grid;
   grid-template-columns: 1fr auto;

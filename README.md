@@ -4,7 +4,7 @@ Next-generation restaurant website for Vogteier Imbiss in Oberdorla, Germany.
 
 ## Live website
 
-[vogteier-imbiss-oberdorla.lefterisxefteris.chatgpt.site](https://vogteier-imbiss-oberdorla.lefterisxefteris.chatgpt.site)
+[vogteierimbiss.best](https://vogteierimbiss.best)
 
 ## Features
 
@@ -31,6 +31,13 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run lint
 npm test
+npm run build:pages
 ```
 
 Built with Next.js, React, TypeScript, Tailwind CSS, and Vinext.
+
+## GitHub Pages
+
+The `Deploy to GitHub Pages` workflow publishes the static export from `out/`
+whenever `main` is updated. In **Settings → Pages**, select **GitHub Actions**
+as the source and set the custom domain to `vogteierimbiss.best`.

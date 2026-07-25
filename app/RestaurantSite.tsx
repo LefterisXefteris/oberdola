@@ -45,13 +45,17 @@ export function RestaurantSite() {
   const [activeCategory, setActiveCategory] = useState("alle");
   const [query, setQuery] = useState("");
   const [vegetarianOnly, setVegetarianOnly] = useState(false);
-  const [openingState, setOpeningState] = useState(() => getOpeningState());
+  const [openingState, setOpeningState] = useState<ReturnType<typeof getOpeningState> | null>(null);
   const categoryTabsRef = useRef<HTMLDivElement>(null);
   const menuResultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setOpeningState(getOpeningState()));
     const timer = window.setInterval(() => setOpeningState(getOpeningState()), 60_000);
-    return () => window.clearInterval(timer);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearInterval(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -164,8 +168,8 @@ export function RestaurantSite() {
         <section className="hero">
           <div className="hero-copy" data-reveal>
             <div className="eyebrow">
-              <span className={`status-dot ${openingState.open ? "open" : ""}`} />
-              {openingState.label}
+              <span className={`status-dot ${openingState?.open ? "open" : ""}`} />
+              {openingState?.label ?? "Öffnungszeiten werden geprüft"}
             </div>
             <h1>
               Döner, der

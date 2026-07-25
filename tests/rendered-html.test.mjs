@@ -50,12 +50,12 @@ test("publishes crawl and discovery routes", async () => {
   assert.equal(robotsResponse.status, 200);
   const robots = await robotsResponse.text();
   assert.match(robots, /User-Agent: \*/i);
-  assert.match(robots, /Sitemap: https:\/\/vogteier-imbiss-oberdorla/);
+  assert.match(robots, /Sitemap: https:\/\/vogteierimbiss\.best/);
 
   const sitemapResponse = await render("/sitemap.xml");
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
-  assert.match(sitemap, /vogteier-imbiss-oberdorla\.lefterisxefteris\.chatgpt\.site/);
+  assert.match(sitemap, /vogteierimbiss\.best/);
   assert.match(sitemap, /<urlset/);
 });
 

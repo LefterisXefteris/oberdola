@@ -1,5 +1,4 @@
-export const siteUrl =
-  "https://vogteier-imbiss-oberdorla.lefterisxefteris.chatgpt.site";
+export const siteUrl = "https://vogteierimbiss.best";
 
 export const business = {
   name: "Vogteier Imbiss",

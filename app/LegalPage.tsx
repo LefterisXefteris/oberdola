@@ -25,7 +25,7 @@ export function LegalPage({
         <div className="legal-content">{children}</div>
       </article>
       <footer className="legal-footer">
-        <span>Vogteier Imbiss · Mühlhäuser Straße 1 · 99986 Oberdorla</span>
+        <span>Vogteier Imbiss · Mühlhäuser Str. 1 · 99986 Vogtei-Oberdorla</span>
         <Link href="/">Startseite</Link>
       </footer>
     </main>

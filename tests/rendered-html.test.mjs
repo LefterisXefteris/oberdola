@@ -42,6 +42,12 @@ test("server-renders the restaurant landing page", async () => {
   assert.match(html, /FAQPage/);
   assert.match(html, /areaServed/);
   assert.match(html, /Essen zum Mitnehmen/);
+  assert.match(html, /Mühlhäuser Str\. 1/);
+  assert.match(html, /99986 Vogtei-Oberdorla/);
+  assert.match(
+    html,
+    /query=M%C3%BChlh%C3%A4user\+Str\.\+1%2C\+99986\+Vogtei-Oberdorla%2C\+Germany/,
+  );
   assert.match(html, /data-opening-status/);
   assert.match(html, /updateOpeningStatus/);
   assert.doesNotMatch(html, /Öffnungszeiten werden geprüft/);
@@ -69,7 +75,8 @@ test("renders legal pages with the supplied operator details", async () => {
     const html = await response.text();
     assert.match(html, /Bektas Saridas/);
     assert.match(html, /birgulsaridas@gmail\.com/);
-    assert.match(html, /Mühlhäuser Straße 1/);
+    assert.match(html, /Mühlhäuser Str\. 1/);
+    assert.match(html, /99986 Vogtei-Oberdorla/);
   }
 });
 

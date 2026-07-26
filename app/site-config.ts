@@ -4,9 +4,9 @@ export const business = {
   name: "Vogteier Imbiss",
   telephone: "+49 152 31302228",
   email: "birgulsaridas@gmail.com",
-  streetAddress: "Mühlhäuser Straße 1",
+  streetAddress: "Mühlhäuser Str. 1",
   postalCode: "99986",
-  addressLocality: "Oberdorla",
+  addressLocality: "Vogtei-Oberdorla",
 };
 
 export const deliveryAreas = [
@@ -28,7 +28,7 @@ export const localFaqs = [
   {
     question: "Wo gibt es Döner und Pizza nahe Mühlhausen und Niederdorla?",
     answer:
-      "Der Vogteier Imbiss liegt in der Mühlhäuser Straße 1 in 99986 Oberdorla – direkt in der Vogtei zwischen Niederdorla und Mühlhausen. Auf der Karte stehen Döner, Pizza, Burger, Salate, Nudeln, Schnitzel und weitere Imbissgerichte.",
+      "Der Vogteier Imbiss liegt in der Mühlhäuser Str. 1 in 99986 Vogtei-Oberdorla – direkt in der Vogtei zwischen Niederdorla und Mühlhausen. Auf der Karte stehen Döner, Pizza, Burger, Salate, Nudeln, Schnitzel und weitere Imbissgerichte.",
   },
   {
     question: "Liefert der Vogteier Imbiss nach Niederdorla und Mühlhausen?",

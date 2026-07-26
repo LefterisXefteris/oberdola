@@ -9,7 +9,7 @@ const phoneHref = "tel:+4915231302228";
 const whatsappHref =
   "https://wa.me/4915231302228?text=Hallo%20Vogteier%20Imbiss%2C%20ich%20m%C3%B6chte%20gern%20bestellen%3A%20";
 const directionsHref =
-  "https://www.google.com/maps/search/?api=1&query=M%C3%BChlh%C3%A4user+Str.+1%2C+99986+Oberdorla";
+  "https://www.google.com/maps/search/?api=1&query=M%C3%BChlh%C3%A4user+Str.+1%2C+99986+Vogtei-Oberdorla%2C+Germany";
 
 const openingStatusScript = String.raw`
   (() => {
@@ -212,7 +212,7 @@ export function RestaurantSite() {
             </div>
             <a className="hero-address" href={directionsHref} target="_blank" rel="noreferrer">
               <span>📍</span>
-              <span>Mühlhäuser Str. 1 · 99986 Oberdorla</span>
+              <span>Mühlhäuser Str. 1 · 99986 Vogtei-Oberdorla</span>
             </a>
           </div>
         </section>
@@ -507,8 +507,8 @@ export function RestaurantSite() {
             <p className="section-kicker">Komm vorbei</p>
             <h2>Mitten in <span>Oberdorla.</span></h2>
             <address>
-              Mühlhäuser Straße 1<br />
-              99986 Oberdorla
+              Mühlhäuser Str. 1<br />
+              99986 Vogtei-Oberdorla
             </address>
           </div>
           <div className="contact-actions" data-reveal>

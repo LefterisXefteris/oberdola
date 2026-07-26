@@ -14,7 +14,7 @@ export default function DatenschutzPage() {
         <h2>1. Verantwortlicher</h2>
         <address>
           Bektas Saridas · Vogteier Imbiss<br />
-          Mühlhäuser Straße 1 · 99986 Oberdorla<br />
+          Mühlhäuser Str. 1 · 99986 Vogtei-Oberdorla<br />
           Telefon: <a href="tel:+4915231302228">0152 31302228</a><br />
           E-Mail: <a href="mailto:birgulsaridas@gmail.com">birgulsaridas@gmail.com</a>
         </address>

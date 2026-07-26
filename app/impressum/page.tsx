@@ -15,8 +15,8 @@ export default function ImpressumPage() {
         <address>
           Bektas Saridas<br />
           Vogteier Imbiss<br />
-          Mühlhäuser Straße 1<br />
-          99986 Oberdorla<br />
+          Mühlhäuser Str. 1<br />
+          99986 Vogtei-Oberdorla<br />
           Deutschland
         </address>
       </section>
@@ -31,8 +31,8 @@ export default function ImpressumPage() {
         <h2>Verantwortlich für den Inhalt</h2>
         <p>
           Bektas Saridas<br />
-          Mühlhäuser Straße 1<br />
-          99986 Oberdorla
+          Mühlhäuser Str. 1<br />
+          99986 Vogtei-Oberdorla
         </p>
       </section>
       <section>

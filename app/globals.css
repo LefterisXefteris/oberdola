@@ -581,12 +581,46 @@ a {
 }
 
 .section-heading {
+  position: relative;
   display: flex;
   gap: 32px;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
-  padding-bottom: 44px;
-  border-bottom: 3px solid var(--ink);
+  min-height: clamp(430px, 42vw, 620px);
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(54px, 7vw, 100px) max(24px, calc((100vw - 1440px) / 2));
+  overflow: hidden;
+  border-block: 3px solid var(--ink);
+  isolation: isolate;
+}
+
+.section-heading::before,
+.section-heading::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.section-heading::before {
+  z-index: -2;
+  background: url("/menu-village.png") center bottom / cover no-repeat;
+}
+
+.section-heading::after {
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 243, 207, 0.86) 0%,
+      rgba(255, 243, 207, 0.58) 54%,
+      rgba(255, 243, 207, 0.28) 100%
+    );
+}
+
+.section-heading > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section-heading h2,
@@ -599,35 +633,11 @@ a {
   display: inline-flex;
   flex: none;
   gap: 14px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--ink);
+  padding: 12px 16px;
+  border: 2px solid var(--ink);
+  background: rgba(255, 249, 232, 0.9);
   font-weight: 900;
-}
-
-.menu-village {
-  position: relative;
-  aspect-ratio: 3.4 / 1;
-  min-height: 150px;
-  max-height: 390px;
-  margin: 48px calc(50% - 50vw) 16px;
-  overflow: hidden;
-  border-block: 2px solid var(--ink);
-  background: var(--paper);
-}
-
-.menu-village::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  box-shadow: inset 0 16px 26px rgba(255, 247, 222, 0.2);
-}
-
-.menu-village img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
 .menu-controls {
@@ -1555,6 +1565,8 @@ footer {
   .section-heading {
     display: grid;
     align-items: start;
+    min-height: 420px;
+    padding-block: 52px;
   }
 
   .section-heading h2,
@@ -1702,6 +1714,11 @@ footer {
   .contact-copy h2,
   .faq-heading h2 {
     font-size: clamp(3rem, 14vw, 4.4rem);
+  }
+
+  .section-heading {
+    min-height: 350px;
+    padding: 38px 20px;
   }
 
   .marquee {

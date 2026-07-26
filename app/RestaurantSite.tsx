@@ -11,31 +11,44 @@ const whatsappHref =
 const directionsHref =
   "https://www.google.com/maps/search/?api=1&query=M%C3%BChlh%C3%A4user+Str.+1%2C+99986+Oberdorla";
 
-function getOpeningState(now = new Date()) {
-  const parts = new Intl.DateTimeFormat("de-DE", {
-    timeZone: "Europe/Berlin",
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23",
-  }).formatToParts(now);
-  const weekday = parts.find((part) => part.type === "weekday")?.value ?? "";
-  const hour = Number(parts.find((part) => part.type === "hour")?.value ?? 0);
-  const minute = Number(parts.find((part) => part.type === "minute")?.value ?? 0);
-  const minutes = hour * 60 + minute;
-  const isMonday = weekday.startsWith("Mo");
-  const isSunday = weekday.startsWith("So");
-  const opensAt = isSunday ? 15 * 60 : 11 * 60;
-  const closesAt = 21 * 60 + 30;
-  const isOpen = !isMonday && minutes >= opensAt && minutes < closesAt;
+const openingStatusScript = String.raw`
+  (() => {
+    const updateOpeningStatus = () => {
+      const parts = new Intl.DateTimeFormat("de-DE", {
+        timeZone: "Europe/Berlin",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23"
+      }).formatToParts(new Date());
+      const weekday = parts.find((part) => part.type === "weekday")?.value ?? "";
+      const hour = Number(parts.find((part) => part.type === "hour")?.value ?? 0);
+      const minute = Number(parts.find((part) => part.type === "minute")?.value ?? 0);
+      const minutes = hour * 60 + minute;
+      const isMonday = weekday.startsWith("Mo");
+      const isSunday = weekday.startsWith("So");
+      const opensAt = isSunday ? 15 * 60 : 11 * 60;
+      const closesAt = 21 * 60 + 30;
+      const isOpen = !isMonday && minutes >= opensAt && minutes < closesAt;
+      let label = "Heute geschlossen";
 
-  if (isOpen) return { open: true, label: `Geöffnet bis 21:30 Uhr` };
-  if (isMonday) return { open: false, label: "Heute Ruhetag" };
-  if (minutes < opensAt) {
-    return { open: false, label: `Öffnet heute um ${isSunday ? "15:00" : "11:00"} Uhr` };
-  }
-  return { open: false, label: "Heute geschlossen" };
-}
+      if (isOpen) label = "Geöffnet bis 21:30 Uhr";
+      else if (isMonday) label = "Heute Ruhetag";
+      else if (minutes < opensAt) {
+        label = "Öffnet heute um " + (isSunday ? "15:00" : "11:00") + " Uhr";
+      }
+
+      const status = document.querySelector("[data-opening-status]");
+      const dot = status?.querySelector("[data-opening-dot]");
+      const text = status?.querySelector("[data-opening-label]");
+      dot?.classList.toggle("open", isOpen);
+      if (text) text.textContent = label;
+    };
+
+    updateOpeningStatus();
+    window.setInterval(updateOpeningStatus, 60_000);
+  })();
+`;
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
@@ -45,18 +58,8 @@ export function RestaurantSite() {
   const [activeCategory, setActiveCategory] = useState("alle");
   const [query, setQuery] = useState("");
   const [vegetarianOnly, setVegetarianOnly] = useState(false);
-  const [openingState, setOpeningState] = useState<ReturnType<typeof getOpeningState> | null>(null);
   const categoryTabsRef = useRef<HTMLDivElement>(null);
   const menuResultsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setOpeningState(getOpeningState()));
-    const timer = window.setInterval(() => setOpeningState(getOpeningState()), 60_000);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearInterval(timer);
-    };
-  }, []);
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
@@ -171,10 +174,13 @@ export function RestaurantSite() {
           </h1>
 
           <div className="hero-status-row" data-reveal>
-            <div className="eyebrow">
-              <span className={`status-dot ${openingState?.open ? "open" : ""}`} />
-              {openingState?.label ?? "Öffnungszeiten werden geprüft"}
+            <div className="eyebrow" data-opening-status>
+              <span className="status-dot" data-opening-dot suppressHydrationWarning />
+              <span data-opening-label suppressHydrationWarning>
+                Di–Sa ab 11:00 Uhr · So ab 15:00 Uhr
+              </span>
             </div>
+            <script dangerouslySetInnerHTML={{ __html: openingStatusScript }} />
           </div>
 
           <div className="hero-art" data-reveal>

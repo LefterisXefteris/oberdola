@@ -42,6 +42,9 @@ test("server-renders the restaurant landing page", async () => {
   assert.match(html, /FAQPage/);
   assert.match(html, /areaServed/);
   assert.match(html, /Essen zum Mitnehmen/);
+  assert.match(html, /data-opening-status/);
+  assert.match(html, /updateOpeningStatus/);
+  assert.doesNotMatch(html, /Öffnungszeiten werden geprüft/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 

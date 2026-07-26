@@ -193,7 +193,7 @@ export function RestaurantSite() {
             <div className="deal-sticker" aria-label="Dienstagsangebot">
               <span>Dienstag</span>
               <strong>= Dönertag</strong>
-              <small>ab 4 € · nur Abholung</small>
+              <small>ab 5 € · nur Abholung</small>
             </div>
           </div>
 
@@ -241,8 +241,8 @@ export function RestaurantSite() {
             <p className="section-kicker">Dienstagsdeal</p>
             <h2>Dönertag.</h2>
             <div className="deal-prices">
-              <p><span>Normaler Döner</span><strong>5 €</strong></p>
-              <p><span>Kleiner Döner</span><strong>4 €</strong></p>
+              <p><span>Normaler Döner</span><strong>6 €</strong></p>
+              <p><span>Kleiner Döner</span><strong>5 €</strong></p>
             </div>
             <small>Nur Abholung.</small>
           </article>
@@ -496,7 +496,7 @@ export function RestaurantSite() {
               <div><span>Mülverstedt · Weberstedt</span><strong>ab 30 €</strong></div>
               <div className="pickup-bonus">
                 <span>Selbstabholer-Bonus</span>
-                <strong>Ab 40 € Bestellwert gibt’s ein alkoholfreies Getränk gratis.</strong>
+                <strong>Ab 50 € Bestellwert gibt’s ein alkoholfreies Getränk gratis.</strong>
               </div>
             </div>
           </div>

@@ -51,6 +51,11 @@ test("server-renders the restaurant landing page", async () => {
   assert.match(html, /data-opening-status/);
   assert.match(html, /updateOpeningStatus/);
   assert.doesNotMatch(html, /Öffnungszeiten werden geprüft/);
+  assert.match(html, /Normaler Döner<\/span><strong>6 €/);
+  assert.match(html, /Kleiner Döner<\/span><strong>5 €/);
+  assert.match(html, /Ab 50 € Bestellwert/);
+  assert.match(html, /Pizza Oberdorla[\s\S]{0,700}10,00 €[\s\S]{0,300}16,50 €/);
+  assert.match(html, /Baguette Würzfleisch[\s\S]{0,500}7,50 €/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 

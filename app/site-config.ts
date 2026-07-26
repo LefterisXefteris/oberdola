@@ -38,7 +38,7 @@ export const localFaqs = [
   {
     question: "Kann ich Essen zum Mitnehmen bestellen?",
     answer:
-      "Ja. Bestellungen zur Abholung sind telefonisch oder per WhatsApp möglich. Dienstags gibt es den Dönertag nur für Selbstabholer: normaler Döner 5 Euro, kleiner Döner 4 Euro.",
+      "Ja. Bestellungen zur Abholung sind telefonisch oder per WhatsApp möglich. Dienstags gibt es den Dönertag nur für Selbstabholer: normaler Döner 6 Euro, kleiner Döner 5 Euro.",
   },
   {
     question: "Wie sind die Öffnungszeiten?",

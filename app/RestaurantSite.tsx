@@ -166,16 +166,32 @@ export function RestaurantSite() {
 
       <main id="top">
         <section className="hero">
-          <div className="hero-copy" data-reveal>
+          <h1 className="sr-only">
+            Vogteier Imbiss – Döner und Pizza in Oberdorla
+          </h1>
+
+          <div className="hero-status-row" data-reveal>
             <div className="eyebrow">
               <span className={`status-dot ${openingState?.open ? "open" : ""}`} />
               {openingState?.label ?? "Öffnungszeiten werden geprüft"}
             </div>
-            <h1>
-              Döner, der
-              <span> Oberdorla </span>
-              bewegt.
-            </h1>
+          </div>
+
+          <div className="hero-art" data-reveal>
+            <img
+              src="/og.png"
+              alt="Vogteier Imbiss mit Döner und Pizza – Döner, der Oberdorla bewegt"
+              width="1200"
+              height="630"
+            />
+            <div className="deal-sticker" aria-label="Dienstagsangebot">
+              <span>Dienstag</span>
+              <strong>= Dönertag</strong>
+              <small>ab 4 € · nur Abholung</small>
+            </div>
+          </div>
+
+          <div className="hero-utility" data-reveal>
             <p className="hero-lead">
               Dein Imbiss für Döner, Pizza und Essen zum Mitnehmen in Oberdorla –
               nahe Niederdorla und Mühlhausen, auf Wunsch bis vor deine Tür.
@@ -188,24 +204,10 @@ export function RestaurantSite() {
                 0152 31302228
               </a>
             </div>
-            <div className="hero-address">
+            <a className="hero-address" href={directionsHref} target="_blank" rel="noreferrer">
               <span>📍</span>
               <span>Mühlhäuser Str. 1 · 99986 Oberdorla</span>
-            </div>
-          </div>
-
-          <div className="hero-art" data-reveal>
-            <img
-              src="/og.png"
-              alt="Döner und Pizza im Vogteier-Imbiss-Stil"
-              width="1200"
-              height="630"
-            />
-            <div className="deal-sticker" aria-label="Dienstagsangebot">
-              <span>Dienstag</span>
-              <strong>= Dönertag</strong>
-              <small>ab 4 € · nur Abholung</small>
-            </div>
+            </a>
           </div>
         </section>
 

@@ -179,19 +179,16 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(520px, 1.28fr);
-  gap: clamp(24px, 4vw, 72px);
-  align-items: center;
-  width: min(1760px, calc(100% - 32px));
-  min-height: min(830px, calc(100svh - 82px));
+  gap: 22px;
+  width: min(1560px, calc(100% - 56px));
   margin-inline: auto;
-  padding: 64px 0 74px;
+  padding: 38px 0 92px;
 }
 
-.hero-copy {
-  max-width: 700px;
-  min-width: 0;
-  padding-left: clamp(0px, 3vw, 48px);
+.hero-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .eyebrow,
@@ -207,6 +204,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin: 0;
   padding: 8px 12px;
   border: 1.5px solid var(--ink);
   background: var(--paper);
@@ -225,7 +223,6 @@ a {
   box-shadow: 0 0 0 4px rgba(21, 148, 71, 0.15);
 }
 
-.hero h1,
 .section-heading h2,
 .local-intro h2,
 .delivery-intro h2,
@@ -240,12 +237,6 @@ a {
   text-transform: uppercase;
 }
 
-.hero h1 {
-  max-width: 780px;
-  font-size: clamp(4rem, 6.6vw, 8rem);
-}
-
-.hero h1 span,
 .section-heading h2 span,
 .local-intro h2 span,
 .delivery-intro h2 span,
@@ -254,11 +245,20 @@ a {
 }
 
 .hero-lead {
-  max-width: 590px;
-  margin: 28px 0;
+  max-width: 62ch;
+  margin: 0;
   color: #3f3a32;
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
   line-height: 1.55;
+}
+
+.hero-utility {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) auto minmax(260px, auto);
+  gap: clamp(22px, 3vw, 52px);
+  align-items: center;
+  padding-top: 22px;
+  border-top: 2px solid var(--ink);
 }
 
 .hero-actions {
@@ -318,7 +318,9 @@ a {
   display: flex;
   gap: 10px;
   align-items: center;
-  margin-top: 28px;
+  min-height: 54px;
+  padding-left: clamp(20px, 2.5vw, 42px);
+  border-left: 2px solid var(--ink);
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -333,7 +335,6 @@ a {
   border: 3px solid var(--ink);
   background: var(--red);
   box-shadow: 14px 14px 0 var(--ink);
-  transform: rotate(1.5deg);
 }
 
 .hero-art::before {
@@ -1425,12 +1426,12 @@ footer {
     gap: 18px;
   }
 
-  .hero {
-    grid-template-columns: 0.76fr 1.24fr;
+  .hero-utility {
+    grid-template-columns: 1fr auto;
   }
 
-  .hero h1 {
-    font-size: clamp(3.8rem, 6.8vw, 6.2rem);
+  .hero-utility .hero-lead {
+    grid-column: 1 / -1;
   }
 
   .quick-facts {
@@ -1483,25 +1484,14 @@ footer {
   }
 
   .hero {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 44px;
-    min-height: 0;
-    padding: 46px 0 64px;
-  }
-
-  .hero-copy {
-    padding-left: 0;
-  }
-
-  .hero h1 {
-    font-size: clamp(4.4rem, 19vw, 8rem);
+    gap: 18px;
+    padding: 28px 0 70px;
   }
 
   .hero-art {
     min-height: 0;
     margin-right: 8px;
     box-shadow: 8px 8px 0 var(--ink);
-    transform: rotate(0.7deg);
   }
 
   .hero-art img {
@@ -1527,6 +1517,22 @@ footer {
 
   .deal-sticker small {
     font-size: 0.52rem;
+  }
+
+  .hero-utility {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 18px;
+  }
+
+  .hero-utility .hero-lead {
+    grid-column: auto;
+  }
+
+  .hero-address {
+    padding: 16px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
   }
 
   .quick-facts {
@@ -1688,10 +1694,6 @@ footer {
 
   .hero {
     padding-top: 36px;
-  }
-
-  .hero h1 {
-    font-size: clamp(4.15rem, 20vw, 6.6rem);
   }
 
   .section-heading h2,

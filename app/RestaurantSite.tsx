@@ -203,11 +203,11 @@ export function RestaurantSite() {
               nahe Niederdorla und Mühlhausen, auf Wunsch bis vor deine Tür.
             </p>
             <div className="hero-actions">
-              <a className="button button-dark" href={whatsappHref} target="_blank" rel="noreferrer">
-                Per WhatsApp bestellen <Arrow />
+              <a className="button button-dark" href="#speisekarte">
+                Speisekarte ansehen <Arrow />
               </a>
-              <a className="button button-ghost" href={phoneHref}>
-                0152 31302228
+              <a className="button button-ghost" href={whatsappHref} target="_blank" rel="noreferrer">
+                Per WhatsApp bestellen
               </a>
             </div>
             <a className="hero-address" href={directionsHref} target="_blank" rel="noreferrer">
@@ -227,68 +227,21 @@ export function RestaurantSite() {
 
         <section className="quick-facts section-shell" aria-label="Öffnungszeiten und Angebot">
           <article className="fact-card fact-hours" data-reveal>
-            <span className="card-index">01</span>
             <p className="section-kicker">Öffnungszeiten</p>
-            <h2>Wenn der Hunger kommt.</h2>
-            <dl>
-              <div><dt>Dienstag – Samstag</dt><dd>11:00 – 21:30</dd></div>
-              <div><dt>Sonn- & Feiertage</dt><dd>15:00 – 21:30</dd></div>
-              <div><dt>Montag</dt><dd>Ruhetag</dd></div>
-            </dl>
+            <h2>Di–Sa · 11–21:30</h2>
+            <p>Sonntags &amp; feiertags ab 15 Uhr · Montag Ruhetag</p>
           </article>
           <article className="fact-card fact-deal" data-reveal>
-            <span className="card-index">02</span>
             <p className="section-kicker">Dienstagsdeal</p>
-            <h2>Dönertag.</h2>
-            <div className="deal-prices">
-              <p><span>Normaler Döner</span><strong>6 €</strong></p>
-              <p><span>Kleiner Döner</span><strong>5 €</strong></p>
-            </div>
-            <small>Nur Abholung.</small>
+            <h2>Döner ab 5 €</h2>
+            <p>Kleiner Döner 5 € · normaler Döner 6 € · nur Abholung</p>
           </article>
           <article className="fact-card fact-delivery" data-reveal>
-            <span className="card-index">03</span>
             <p className="section-kicker">Heimservice</p>
-            <h2>Wir bringen’s.</h2>
-            <p>Lieferzeiten täglich von <strong>11:30 – 21:00 Uhr</strong>.</p>
+            <h2>11:30–21:00</h2>
+            <p>Wir liefern in Oberdorla und die umliegenden Orte.</p>
             <a href="#lieferservice">Liefergebiete ansehen <Arrow /></a>
           </article>
-        </section>
-
-        <section className="local-intro section-shell" aria-labelledby="local-heading">
-          <div className="local-intro-copy" data-reveal>
-            <p className="section-kicker">Imbiss in der Vogtei</p>
-            <h2 id="local-heading">
-              Döner & Pizza nahe <span>Mühlhausen.</span>
-            </h2>
-            <p>
-              Du suchst einen Imbiss, Döner, Pizza oder Take-away in deiner Nähe?
-              Der Vogteier Imbiss liegt in Oberdorla, direkt zwischen Niederdorla
-              und Mühlhausen. Bestelle zur Abholung oder nutze unseren Heimservice
-              in der Vogtei und den umliegenden Orten.
-            </p>
-            <div className="local-links">
-              <a href="#speisekarte">Speisekarte ansehen <Arrow /></a>
-              <a href="#lieferservice">Liefergebiete prüfen <Arrow /></a>
-            </div>
-          </div>
-          <div className="local-areas" data-reveal>
-            <p className="section-kicker">Hier sind wir für dich da</p>
-            <ul aria-label="Liefergebiete rund um Oberdorla">
-              {[
-                "Oberdorla",
-                "Niederdorla",
-                "Mühlhausen",
-                "Langula",
-                "Felchta",
-                "Kammerforst",
-                "Oppershausen",
-                "Heyerode",
-              ].map((area) => (
-                <li key={area}>{area}</li>
-              ))}
-            </ul>
-          </div>
         </section>
 
         <section id="speisekarte" className="menu-section section-shell">
@@ -469,6 +422,42 @@ export function RestaurantSite() {
               deiner Bestellung an. Für Druckfehler keine Haftung.
             </p>
             <a href={phoneHref}>Jetzt anrufen <Arrow /></a>
+          </div>
+        </section>
+
+        <section className="local-intro section-shell" aria-labelledby="local-heading">
+          <div className="local-intro-copy" data-reveal>
+            <p className="section-kicker">Imbiss in der Vogtei</p>
+            <h2 id="local-heading">
+              Döner & Pizza nahe <span>Mühlhausen.</span>
+            </h2>
+            <p>
+              Du suchst einen Imbiss, Döner, Pizza oder Take-away in deiner Nähe?
+              Der Vogteier Imbiss liegt in Oberdorla, direkt zwischen Niederdorla
+              und Mühlhausen. Bestelle zur Abholung oder nutze unseren Heimservice
+              in der Vogtei und den umliegenden Orten.
+            </p>
+            <div className="local-links">
+              <a href="#speisekarte">Speisekarte ansehen <Arrow /></a>
+              <a href="#lieferservice">Liefergebiete prüfen <Arrow /></a>
+            </div>
+          </div>
+          <div className="local-areas" data-reveal>
+            <p className="section-kicker">Hier sind wir für dich da</p>
+            <ul aria-label="Liefergebiete rund um Oberdorla">
+              {[
+                "Oberdorla",
+                "Niederdorla",
+                "Mühlhausen",
+                "Langula",
+                "Felchta",
+                "Kammerforst",
+                "Oppershausen",
+                "Heyerode",
+              ].map((area) => (
+                <li key={area}>{area}</li>
+              ))}
+            </ul>
           </div>
         </section>
 

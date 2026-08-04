@@ -179,10 +179,10 @@ a {
 
 .hero {
   display: grid;
-  gap: 22px;
+  gap: 10px;
   width: min(1560px, calc(100% - 56px));
   margin-inline: auto;
-  padding: 38px 0 92px;
+  padding: 14px 0 92px;
 }
 
 .hero-status-row {
@@ -429,15 +429,15 @@ a {
 
 .quick-facts {
   display: grid;
-  grid-template-columns: 1.15fr 0.9fr 0.95fr;
-  gap: 18px;
-  padding-block: 110px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding-block: 44px;
 }
 
 .fact-card {
   position: relative;
-  min-height: 380px;
-  padding: 36px;
+  min-height: 190px;
+  padding: 24px;
   overflow: hidden;
   border: 2px solid var(--ink);
   box-shadow: 8px 8px 0 var(--ink);
@@ -454,9 +454,9 @@ a {
 
 .fact-card h2 {
   max-width: 500px;
-  margin: 0 0 32px;
+  margin: 0 0 16px;
   font-family: var(--display);
-  font-size: clamp(3.2rem, 5vw, 6rem);
+  font-size: clamp(2rem, 3vw, 3.4rem);
   font-weight: 900;
   line-height: 0.86;
   text-transform: uppercase;
@@ -469,7 +469,6 @@ a {
 .fact-deal {
   background: var(--red);
   color: white;
-  transform: translateY(36px) rotate(1deg);
 }
 
 .fact-delivery {
@@ -498,13 +497,14 @@ a {
 }
 
 .fact-card p {
+  margin-bottom: 0;
   max-width: 38ch;
 }
 
 .fact-card > a {
   display: inline-flex;
   gap: 12px;
-  margin-top: 38px;
+  margin-top: 18px;
   border-bottom: 1px solid currentColor;
   font-weight: 900;
 }
@@ -577,7 +577,7 @@ a {
 }
 
 .menu-section {
-  padding: 70px 0 120px;
+  padding: 20px 0 120px;
 }
 
 .section-heading {
@@ -586,9 +586,9 @@ a {
   gap: 32px;
   align-items: center;
   justify-content: space-between;
-  min-height: clamp(430px, 42vw, 620px);
+  min-height: clamp(220px, 22vw, 320px);
   margin-inline: calc(50% - 50vw);
-  padding: clamp(54px, 7vw, 100px) max(24px, calc((100vw - 1440px) / 2));
+  padding: clamp(32px, 4vw, 56px) max(24px, calc((100vw - 1440px) / 2));
   overflow: hidden;
   border-block: 3px solid var(--ink);
   isolation: isolate;
@@ -626,7 +626,7 @@ a {
 .section-heading h2,
 .delivery-intro h2,
 .contact-copy h2 {
-  font-size: clamp(4rem, 8vw, 8.6rem);
+  font-size: clamp(3.2rem, 5.5vw, 6rem);
 }
 
 .pdf-link {
@@ -1445,11 +1445,7 @@ footer {
   }
 
   .quick-facts {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .fact-delivery {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .menu-grid {
@@ -1494,8 +1490,8 @@ footer {
   }
 
   .hero {
-    gap: 18px;
-    padding: 28px 0 70px;
+    gap: 10px;
+    padding: 14px 0 70px;
   }
 
   .hero-art {
@@ -1546,35 +1542,40 @@ footer {
   }
 
   .quick-facts {
-    grid-template-columns: 1fr;
-    padding-block: 80px;
+    display: flex;
+    gap: 12px;
+    padding-block: 32px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
   }
 
   .fact-card {
-    min-height: 330px;
+    flex: 0 0 min(82vw, 360px);
+    min-height: 180px;
+    scroll-snap-align: start;
   }
 
-  .fact-deal {
-    transform: none;
-  }
-
-  .fact-delivery {
-    grid-column: auto;
+  .fact-card h2 {
+    font-size: clamp(2.25rem, 10vw, 3.25rem);
   }
 
   .section-heading {
     display: grid;
     align-items: start;
-    min-height: 420px;
-    padding-block: 52px;
+    min-height: 260px;
+    padding-block: 32px;
   }
 
-  .section-heading h2,
   .local-intro h2,
   .delivery-intro h2,
   .contact-copy h2,
   .faq-heading h2 {
     font-size: clamp(4rem, 16vw, 7rem);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(3rem, 12vw, 5rem);
   }
 
   .pdf-link {
@@ -1705,7 +1706,7 @@ footer {
   }
 
   .hero {
-    padding-top: 36px;
+    padding-top: 14px;
   }
 
   .section-heading h2,
@@ -1717,8 +1718,8 @@ footer {
   }
 
   .section-heading {
-    min-height: 350px;
-    padding: 38px 20px;
+    min-height: 240px;
+    padding: 28px 20px;
   }
 
   .marquee {
@@ -1754,12 +1755,12 @@ footer {
   }
 
   .fact-card {
-    min-height: 310px;
-    padding: 28px;
+    min-height: 170px;
+    padding: 22px;
   }
 
   .fact-card h2 {
-    font-size: 3.6rem;
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
   }
 
   .menu-card {

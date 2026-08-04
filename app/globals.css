@@ -1328,14 +1328,77 @@ footer {
 }
 
 [data-reveal] {
+  --reveal-x: 0px;
+  --reveal-y: 24px;
+  --reveal-scale: 0.99;
+  --reveal-rotate: 0deg;
+  --reveal-delay: 0ms;
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform: translate3d(var(--reveal-x), var(--reveal-y), 0)
+    scale(var(--reveal-scale)) rotate(var(--reveal-rotate));
+  transform-origin: center;
+  transition:
+    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay);
+}
+
+[data-reveal].will-reveal {
+  will-change: opacity, transform;
 }
 
 [data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+}
+
+.hero-status-row[data-reveal] {
+  --reveal-y: 10px;
+  --reveal-scale: 1;
+}
+
+.hero-art[data-reveal],
+.section-heading[data-reveal],
+.allergen-note[data-reveal] {
+  --reveal-y: 14px;
+  --reveal-scale: 0.975;
+}
+
+.fact-card:nth-child(1)[data-reveal] {
+  --reveal-x: -20px;
+  --reveal-y: 12px;
+  --reveal-rotate: -0.35deg;
+}
+
+.fact-card:nth-child(3)[data-reveal] {
+  --reveal-x: 20px;
+  --reveal-y: 12px;
+  --reveal-rotate: 0.35deg;
+}
+
+.local-intro-copy[data-reveal],
+.delivery-intro[data-reveal],
+.contact-copy[data-reveal],
+.faq-heading[data-reveal] {
+  --reveal-x: -26px;
+  --reveal-y: 0px;
+}
+
+.local-areas[data-reveal],
+.delivery-prices[data-reveal],
+.contact-actions[data-reveal] {
+  --reveal-x: 26px;
+  --reveal-y: 0px;
+}
+
+.faq-list details[data-reveal] {
+  --reveal-x: 14px;
+  --reveal-y: 0px;
+  --reveal-scale: 1;
+}
+
+.menu-category[data-reveal] {
+  --reveal-y: 34px;
+  --reveal-scale: 0.992;
 }
 
 .legal-page {

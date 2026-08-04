@@ -88,20 +88,52 @@ export function RestaurantSite() {
       nodes.forEach((node) => node.classList.add("is-visible"));
       return;
     }
+
+    nodes.forEach((node) => {
+      const siblings = node.parentElement
+        ? Array.from(node.parentElement.children).filter((child) =>
+            child instanceof HTMLElement && child.hasAttribute("data-reveal"),
+          )
+        : [];
+      const position = siblings.indexOf(node);
+      const delay = siblings.length > 1 && siblings.length <= 6
+        ? Math.min(position * 70, 210)
+        : 0;
+      node.style.setProperty("--reveal-delay", `${delay}ms`);
+    });
+
+    const animationFrames: number[] = [];
+    const completionTimers: number[] = [];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+            const target = entry.target as HTMLElement;
+            target.classList.add("will-reveal");
+            const animationFrame = window.requestAnimationFrame(() => {
+              target.classList.add("is-visible");
+              const completionTimer = window.setTimeout(() => {
+                target.classList.remove("will-reveal");
+                target.classList.add("reveal-complete");
+              }, 900);
+              completionTimers.push(completionTimer);
+            });
+            animationFrames.push(animationFrame);
+            observer.unobserve(target);
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.06 },
     );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
+    nodes.forEach((node) => {
+      if (!node.classList.contains("is-visible")) observer.observe(node);
+    });
+    return () => {
+      observer.disconnect();
+      animationFrames.forEach((animationFrame) => window.cancelAnimationFrame(animationFrame));
+      completionTimers.forEach((completionTimer) => window.clearTimeout(completionTimer));
+    };
+  }, [activeCategory, query, vegetarianOnly]);
 
   const visibleCategories = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("de-DE");
@@ -364,7 +396,7 @@ export function RestaurantSite() {
 
           <div className="menu-results" id="menu-results" ref={menuResultsRef}>
             {visibleCategories.map((category) => (
-              <section className="menu-category" key={category.slug}>
+              <section className="menu-category" key={category.slug} data-reveal>
                 <div className="menu-category-heading">
                   <h3>{category.label}</h3>
                   {category.note && <p>{category.note}</p>}
